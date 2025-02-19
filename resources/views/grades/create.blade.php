@@ -1,93 +1,99 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container1">
-    <h1 class="h1">Add Grades</h1>
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Add Grade</h1>
+        <a href="{{ route('grades.index') }}" class="btn btn-sm btn-secondary shadow-sm">
+            <i class="fas fa-arrow-left fa-sm mr-2"></i>Back to List
+        </a>
+    </div>
 
-    <form action="{{ route('grades.store') }}" method="POST">
-        @csrf
+    <div class="row">
+        <div class="col-xl-6 col-lg-7">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <i class="fas fa-graduation-cap mr-2"></i>Grade Information
+                    </h6>
+                </div>
+                <div class="card-body">
+                    <form action="{{ route('grades.store') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label class="small font-weight-bold text-gray-600">Student</label>
+                            <select name="student_id" class="form-control" required>
+                                <option value="">Select Student</option>
+                                @foreach ($students as $student)
+                                    <option value="{{ $student->id }}">{{ $student->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('student_id') <span class="text-danger small">{{ $message }}</span> @enderror
+                        </div>
 
-        <div class="mb-3">
-            <label class="form-label">Student</label>
-            <select name="student_id" class="form-control1" required>
-                <option value="">Select Student</option>
-                @foreach ($students as $student)
-                    <option value="{{ $student->id }}">{{ $student->name }}</option>
-                @endforeach
-            </select>
-            @error('student_id') <span class="text-danger">{{ $message }}</span> @enderror
+                        <div class="form-group">
+                            <label class="small font-weight-bold text-gray-600">Subject</label>
+                            <select name="subject_id" class="form-control" required>
+                                <option value="">Select Subject</option>
+                                @foreach ($subjects as $subject)
+                                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('subject_id') <span class="text-danger small">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label class="small font-weight-bold text-gray-600">Semester</label>
+                            <select name="semester" class="form-control" required>
+                                <option value="">Select Semester</option>
+                                <option value="1st">1st Semester</option>
+                                <option value="2nd">2nd Semester</option>
+                            </select>
+                            @error('semester') <span class="text-danger small">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label class="small font-weight-bold text-gray-600">Midterm Grade</label>
+                            <select name="midterm" class="form-control">
+                                <option value="">Select Grade</option>
+                                @foreach(['1.00' => 'A+', '1.25' => 'A', '1.50' => 'A-', '1.75' => 'B+', 
+                                        '2.00' => 'B', '2.25' => 'B-', '2.50' => 'C+', '2.75' => 'C', 
+                                        '3.00' => 'C-', '4.00' => 'D - Conditional', '5.00' => 'F - Failed', 
+                                        'INC' => 'Incomplete', 'D' => 'Drop', 'FDA' => 'Failure Due to Absence'] as $value => $label)
+                                    <option value="{{ $value }}">{{ $value }} ({{ $label }})</option>
+                                @endforeach
+                            </select>
+                            @error('midterm') <span class="text-danger small">{{ $message }}</span> @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label class="small font-weight-bold text-gray-600">Final Grade</label>
+                            <select name="final" class="form-control">
+                                <option value="">Select Grade</option>
+                                @foreach(['1.00' => 'A+', '1.25' => 'A', '1.50' => 'A-', '1.75' => 'B+', 
+                                        '2.00' => 'B', '2.25' => 'B-', '2.50' => 'C+', '2.75' => 'C', 
+                                        '3.00' => 'C-', '4.00' => 'D - Conditional', '5.00' => 'F - Failed', 
+                                        'INC' => 'Incomplete', 'D' => 'Drop', 'FDA' => 'Failure Due to Absence'] as $value => $label)
+                                    <option value="{{ $value }}">{{ $value }} ({{ $label }})</option>
+                                @endforeach
+                            </select>
+                            @error('final') <span class="text-danger small">{{ $message }}</span> @enderror
+                        </div>
+
+                        <hr>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-plus fa-sm mr-2"></i>Add Grade
+                            </button>
+                            <a href="{{ route('grades.index') }}" class="btn btn-secondary ml-2">
+                                <i class="fas fa-times fa-sm mr-2"></i>Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label class="form-label">Subject</label>
-            <select name="subject_id" class="form-control1" required>
-                <option value="">Select Subject</option>
-                @foreach ($subjects as $subject)
-                    <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                @endforeach
-            </select>
-            @error('subject_id') <span class="text-danger">{{ $message }}</span> @enderror
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Semester</label>
-            <select name="semester" class="form-control1" required id="semester">
-            <option value="">Select Semester</option>
-            <option value="1st" {{ old('semester') == '1st' ? 'selected' : '' }}>1st Semester</option>
-            <option value="2nd" {{ old('semester') == '2nd' ? 'selected' : '' }}>2nd Semester</option>
-        </select>
-
-            @error('semester') <span class="text-danger">{{ $message }}</span> @enderror
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Midterm Grade</label>
-            <select name="midterm" class="form-control1">
-                <option value="">Select Grade</option>
-                <option value="1.00">1.00 (A+)</option>
-                <option value="1.25">1.25 (A)</option>
-                <option value="1.50">1.50 (A-)</option>
-                <option value="1.75">1.75 (B+)</option>
-                <option value="2.00">2.00 (B)</option>
-                <option value="2.25">2.25 (B-)</option>
-                <option value="2.50">2.50 (C+)</option>
-                <option value="2.75">2.75 (C)</option>
-                <option value="3.00">3.00 (C-)</option>
-                <option value="4.00">4.00 (D - Conditional)</option>
-                <option value="5.00">5.00 (F - Failed)</option>
-                <option value="INC">INC (Incomplete)</option>
-                <option value="D">D (Drop)</option>
-                <option value="FDA">FDA (Failure Due to Absence)</option>
-            </select>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Final Grade</label>
-            <select name="final" class="form-control1">
-                <option value="">Select Grade</option>
-                <option value="1.00">1.00 (A+)</option>
-                <option value="1.25">1.25 (A)</option>
-                <option value="1.50">1.50 (A-)</option>
-                <option value="1.75">1.75 (B+)</option>
-                <option value="2.00">2.00 (B)</option>
-                <option value="2.25">2.25 (B-)</option>
-                <option value="2.50">2.50 (C+)</option>
-                <option value="2.75">2.75 (C)</option>
-                <option value="3.00">3.00 (C-)</option>
-                <option value="4.00">4.00 (D - Conditional)</option>
-                <option value="5.00">5.00 (F - Failed)</option>
-                <option value="INC">INC (Incomplete)</option>
-                <option value="D">D (Drop)</option>
-                <option value="FDA">FDA (Failure Due to Absence)</option>
-            </select>
-        </div>
-
-        <div class="button-group">
-            <x-primary-button type="submit">Add Subjects</x-primary-button>
-            <a href="{{ route('grades.index') }}" class="btn btn-secondary">Cancel</a>
-        </div>
-    </form>
+    </div>
 </div>
-
-
 @endsection

@@ -1,82 +1,73 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-4">
-        <div class="row">
-            <!-- Student Form -->
-             <div class="container1">
-            <div class="col-md-5">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-success text-white">
-                    <h1 class="h1">Add Students</h1>
-                    </div>
-                    <div class="card-body">
-                        <form action="{{ route('students.store') }}" method="POST">
-                            @csrf
-                            <div class="mb-3">
-                                <label class="form-label">Name</label>
-                                <input type="text" name="name" class="form-control1" required>
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control1" required>
-                            </div>
-                            <!-- <div class="mb-3">
-                                <label class="form-label">Phone</label>
-                                <input type="text" name="phone" class="form-control1">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Address</label>
-                                <input type="text" name="address" class="form-control1">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Age</label>
-                                <input type="number" name="age" class="form-control1" required>
-                            </div> -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Student Management</h1>
+    </div>
 
-                            <!-- Year Level Dropdown -->
-                            <div class="mb-3">
-                                <label for="year_level" class="form-label">Year Level</label>
-                                <select name="year_level" class="form-control" required>
-                                    <option value="" disabled selected>Select Year Level</option>
-                                    @for ($i = 1; $i <= 6; $i++)
-                                        <option value="{{ $i }}">{{ $i }} Year</option>
-                                    @endfor
-                                </select>
-                            </div>
-
-                            <!-- Course Dropdown -->
-                            <div class="mb-3">
-                                <label for="course" class="form-label">Course</label>
-                                <select name="course" class="form-control" required>
-                                    <option value="" disabled selected>Select Course</option>
-                                    <option value="BSIT">BSIT</option>
-                                    <option value="BSCS">BSCS</option>
-                                    <option value="BSCE">BSCE</option>
-                                    <option value="BSEd">BSEd</option>
-                                    <option value="BSBA">BSBA</option>
-                                </select>
-                            </div>
-
-                            <div class="button-group">
-                                <x-primary-button type="submit">Add Students</x-primary-button>
-                                <a href="{{ route('students.index') }}" class="btn btn-secondary">Cancel</a>
-                            </div>
-                        </form>
-                    </div>
+    <div class="row">
+        <!-- Student Form Card -->
+        <div class="col-xl-4 col-lg-5">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Add New Student</h6>
                 </div>
+                <div class="card-body">
+                    <form action="{{ route('students.store') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label class="text-dark">Name</label>
+                            <input type="text" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="text-dark">Email</label>
+                            <input type="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="year_level" class="text-dark">Year Level</label>
+                            <select name="year_level" class="form-control" required>
+                                <option value="" disabled selected>Select Year Level</option>
+                                @for ($i = 1; $i <= 6; $i++)
+                                    <option value="{{ $i }}">{{ $i }} Year</option>
+                                @endfor
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="course" class="text-dark">Course</label>
+                            <select name="course" class="form-control" required>
+                                <option value="" disabled selected>Select Course</option>
+                                <option value="BSIT">BSIT</option>
+                                <option value="BSCS">BSCS</option>
+                                <option value="BSCE">BSCE</option>
+                                <option value="BSEd">BSEd</option>
+                                <option value="BSBA">BSBA</option>
+                            </select>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="fas fa-user-plus fa-sm mr-2"></i>Add Student
+                            </button>
+                            <a href="{{ route('students.index') }}" class="btn btn-secondary">
+                                <i class="fas fa-times fa-sm mr-2"></i>Cancel
+                            </a>
+                        </div>
+                    </form>
                 </div>
             </div>
+        </div>
 
-            <!-- Student List Table -->
-            <div class="container2 col-md-7">
-                <div class="card shadow-sm">
-                    <div class="card-header bg-primary text-white text-center">
-                    <h1 class="h1">Lists of Student Role Account</h1>
-                    </div>
-                    <div class="card-body">
-                        <table id="usersTable" class="table table-bordered">
-                            <thead class="bg-secondary text-white">
+        <!-- Students List Card -->
+        <div class="col-xl-8 col-lg-7">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Student Accounts</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" width="100%" cellspacing="0">
+                            <thead>
                                 <tr>
                                     <th>Name</th>
                                     <th>Email</th>
@@ -92,12 +83,16 @@
                                         <td>{{ $student->email }}</td>
                                         <td>{{ $student->year_level ?? 'N/A' }}</td>
                                         <td>{{ $student->course ?? 'N/A' }}</td>
-                                        <td>{{ $student->status }}</td>
+                                        <td>
+                                            <span class="badge badge-{{ $student->status === 'active' ? 'success' : 'secondary' }}">
+                                                {{ $student->status }}
+                                            </span>
+                                        </td>
                                     </tr>
                                 @endforeach
                                 @if (\App\Models\User::where('role', 'student')->count() == 0)
                                     <tr>
-                                        <td colspan="5" class="text-muted">No students found</td>
+                                        <td colspan="5" class="text-center text-muted">No students found</td>
                                     </tr>
                                 @endif
                             </tbody>
@@ -107,4 +102,5 @@
             </div>
         </div>
     </div>
+</div>
 @endsection

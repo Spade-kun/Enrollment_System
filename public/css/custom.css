@@ -457,3 +457,103 @@ body {
     background-color: #6c757d;
     opacity: 0.9;
 }
+
+/* Add these styles at the end of your custom.css file */
+
+/* Card Header Styling */
+.card-header {
+    background-color: #f8f9fc;
+    border-bottom: 1px solid #e3e6f0;
+}
+
+/* Form Control Focus */
+.form-control:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+/* Badge Styling */
+.badge {
+    font-size: 85%;
+    font-weight: 600;
+    padding: 0.35em 0.65em;
+    border-radius: 0.25rem;
+}
+
+.badge-success {
+    background-color: #1cc88a;
+}
+
+.badge-secondary {
+    background-color: #858796;
+}
+
+/* Table Styling Enhancement */
+.table-bordered th {
+    border: 1px solid #e3e6f0;
+    background-color: #f8f9fc;
+    color: #4e73df;
+    font-weight: 600;
+}
+
+.table-bordered td {
+    border: 1px solid #e3e6f0;
+}
+
+/* Button Hover Effects */
+.btn-primary:hover {
+    background-color: #2e59d9;
+    border-color: #2653d4;
+}
+
+.btn-secondary:hover {
+    background-color: #717384;
+    border-color: #6b6d7d;
+}
+
+/* Detail Text Styling */
+.text-gray-600 {
+    color: #858796 !important;
+}
+
+.text-gray-800 {
+    color: #5a5c69 !important;
+}
+
+/* Form Input Styling */
+.form-control {
+    font-size: 0.9rem;
+    border-radius: 0.35rem;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #d1d3e2;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #bac8f3;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+/* Read-only Input Styling */
+.form-control[readonly] {
+    background-color: #eaecf4;
+    opacity: 1;
+}
+
+/* Badge Styling Enhancement */
+.badge {
+    font-size: 80%;
+    font-weight: 600;
+    padding: 0.35em 0.65em;
+    border-radius: 0.35rem;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: #1cc88a;
+}
+
+.badge-danger {
+    color: #fff;
+    background-color: #e74a3b;
+}

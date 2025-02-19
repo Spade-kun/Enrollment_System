@@ -1,71 +1,71 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container1">
-    <h1 class="h1">Edit Grades</h1>
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Grade Details</h1>
+        <a href="{{ route('grades.index') }}" class="btn btn-sm btn-secondary shadow-sm">
+            <i class="fas fa-arrow-left fa-sm mr-2"></i>Back to List
+        </a>
+    </div>
 
-    <form action="{{ route('grades.update', $grade) }}" method="POST">
-        @csrf
-        @method('PATCH')
+    <div class="row">
+        <div class="col-xl-6 col-lg-7">
+            <div class="card shadow mb-4">
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">
+                        <i class="fas fa-graduation-cap mr-2"></i>Grade Information
+                    </h6>
+                    <a href="{{ route('grades.edit', $grade) }}" class="btn btn-sm btn-primary shadow-sm">
+                        <i class="fas fa-edit fa-sm"></i>
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="text-gray-600 small font-weight-bold mb-1">Student Name</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $grade->student->name }}</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-gray-600 small font-weight-bold mb-1">Subject</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $grade->subject->name }}</div>
+                        </div>
+                    </div>
 
-        <div class="mb-3">
-            <label class="form-label">Student</label>
-            <p class="form-control1">{{ $grade->student->name }}</p>
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <div class="text-gray-600 small font-weight-bold mb-1">Midterm Grade</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $grade->midterm_grade }}</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-gray-600 small font-weight-bold mb-1">Final Grade</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $grade->final_grade }}</div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="text-gray-600 small font-weight-bold mb-1">Average Grade</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $grade->average_grade }}</div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="text-gray-600 small font-weight-bold mb-1">US Grade</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $grade->us_grade }}</div>
+                        </div>
+                    </div>
+
+                    @if($grade->grade_description)
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="text-gray-600 small font-weight-bold mb-1">Grade Description</div>
+                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $grade->grade_description }}</div>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+            </div>
         </div>
-
-        <div class="mb-3">
-            <label class="form-label">Subject</label>
-            <p class="form-control1">{{ $grade->subject->name }}</p>
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Midterm Grade</label>
-            <select name="midterm_grade" class="form-control1">
-                <option value="">Select Grade</option>
-                <option value="1.00" {{ $grade->midterm == '1.00' ? 'selected' : '' }}>1.00 (A+)</option>
-                <option value="1.25" {{ $grade->midterm == '1.25' ? 'selected' : '' }}>1.25 (A)</option>
-                <option value="1.50" {{ $grade->midterm == '1.50' ? 'selected' : '' }}>1.50 (A-)</option>
-                <option value="1.75" {{ $grade->midterm == '1.75' ? 'selected' : '' }}>1.75 (B+)</option>
-                <option value="2.00" {{ $grade->midterm == '2.00' ? 'selected' : '' }}>2.00 (B)</option>
-                <option value="2.25" {{ $grade->midterm == '2.25' ? 'selected' : '' }}>2.25 (B-)</option>
-                <option value="2.50" {{ $grade->midterm == '2.50' ? 'selected' : '' }}>2.50 (C+)</option>
-                <option value="2.75" {{ $grade->midterm == '2.75' ? 'selected' : '' }}>2.75 (C)</option>
-                <option value="3.00" {{ $grade->midterm == '3.00' ? 'selected' : '' }}>3.00 (C-)</option>
-                <option value="4.00" {{ $grade->midterm == '4.00' ? 'selected' : '' }}>4.00 (D - Conditional)</option>
-                <option value="5.00" {{ $grade->midterm == '5.00' ? 'selected' : '' }}>5.00 (F - Failed)</option>
-                <option value="INC" {{ $grade->midterm == 'INC' ? 'selected' : '' }}>INC (Incomplete)</option>
-                <option value="D" {{ $grade->midterm == 'D' ? 'selected' : '' }}>D (Drop)</option>
-                <option value="FDA" {{ $grade->midterm == 'FDA' ? 'selected' : '' }}>FDA (Failure Due to Absence)</option>
-            </select>
-            @error('midterm_grade') <span class="text-danger">{{ $message }}</span> @enderror
-        </div>
-
-        <div class="mb-3">
-            <label class="form-label">Final Grade</label>
-            <select name="final_grade" class="form-control1">
-                <option value="">Select Grade</option>
-                <option value="1.00" {{ $grade->final == '1.00' ? 'selected' : '' }}>1.00 (A+)</option>
-                <option value="1.25" {{ $grade->final == '1.25' ? 'selected' : '' }}>1.25 (A)</option>
-                <option value="1.50" {{ $grade->final == '1.50' ? 'selected' : '' }}>1.50 (A-)</option>
-                <option value="1.75" {{ $grade->final == '1.75' ? 'selected' : '' }}>1.75 (B+)</option>
-                <option value="2.00" {{ $grade->final == '2.00' ? 'selected' : '' }}>2.00 (B)</option>
-                <option value="2.25" {{ $grade->final == '2.25' ? 'selected' : '' }}>2.25 (B-)</option>
-                <option value="2.50" {{ $grade->final == '2.50' ? 'selected' : '' }}>2.50 (C+)</option>
-                <option value="2.75" {{ $grade->final == '2.75' ? 'selected' : '' }}>2.75 (C)</option>
-                <option value="3.00" {{ $grade->final == '3.00' ? 'selected' : '' }}>3.00 (C-)</option>
-                <option value="4.00" {{ $grade->final == '4.00' ? 'selected' : '' }}>4.00 (D - Conditional)</option>
-                <option value="5.00" {{ $grade->final == '5.00' ? 'selected' : '' }}>5.00 (F - Failed)</option>
-                <option value="INC" {{ $grade->final == 'INC' ? 'selected' : '' }}>INC (Incomplete)</option>
-                <option value="D" {{ $grade->final == 'D' ? 'selected' : '' }}>D (Drop)</option>
-                <option value="FDA" {{ $grade->final == 'FDA' ? 'selected' : '' }}>FDA (Failure Due to Absence)</option>
-            </select>
-            @error('final_grade') <span class="text-danger">{{ $message }}</span> @enderror
-        </div>
-
-        <div class="button-group">
-            <x-primary-button type="submit">Add Enrollment</x-primary-button>
-            <a href="{{ route('grades.index') }}" class="btn btn-secondary">Cancel</a>
-        </div>
-    </form>
+    </div>
 </div>
 @endsection
