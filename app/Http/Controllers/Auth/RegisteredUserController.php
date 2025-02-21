@@ -33,7 +33,6 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'role' => ['required', 'string', 'in:admin,student'],
             'address' => ['required', 'string', 'max:255'],
             'age' => ['required', 'integer', 'min:1'],
             'phone' => ['required', 'string', 'max:20'],
@@ -46,11 +45,11 @@ class RegisteredUserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'role' => $request->input('role', 'student'),
+            'role' => 'student', // Set default role to student
             'address' => $request->address,
             'age' => $request->age,
             'phone' => $request->phone,
-            'status' => 'not_added_as_student', 
+            'status' => 'not_added_as_student',
             'gender' => $request->gender,
             'year_level' => $request->year_level,
             'course' => $request->course,
@@ -60,10 +59,6 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        if ($user->role === 'admin') {
-            return redirect()->route('admin-dashboard');
-        } else {
-            return redirect()->route('student-dashboard');
-        }
+        return redirect()->route('login')->with('success', 'Account created successfully. Please wait for the admin to approve your account into student account.');
     }
 }

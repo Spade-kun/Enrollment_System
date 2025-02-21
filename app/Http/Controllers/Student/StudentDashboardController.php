@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Student;
 
 use Illuminate\Http\Request;
 use App\Models\Grade;
 use App\Models\Subject;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Controller;
 class StudentDashboardController extends Controller
 {
     public function index()

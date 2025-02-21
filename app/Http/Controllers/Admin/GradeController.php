@@ -1,12 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Grade;
 use App\Models\Student;
 use App\Models\Subject;
 use Illuminate\Support\Facades\Log;
+
+use App\Http\Controllers\Controller;
 
 class GradeController extends Controller
 {
@@ -151,26 +153,38 @@ class GradeController extends Controller
     public function update(Request $request, Grade $grade)
     {
         $validated = $request->validate([
-            'midterm_grade' => 'nullable|numeric|min:0|max:100',
-            'final_grade' => 'nullable|numeric|min:0|max:100',
+            'midterm' => 'required',
+            'final' => 'required',
         ]);
-    
-        $average = ($request->midterm_grade + $request->final_grade) / 2;
-        [$numeric_grade,$us_grade] = $this->getGradeDescription($average);
 
-        $grade->midterm = ($request->midterm_grade === 'INC' || $request->midterm_grade === 'D' || $request->midterm_grade === 'FDA') 
-        ? $request->midterm_grade 
-        : (float) $request->midterm_grade;
-        
-        $grade->final = ($request->final_grade === 'INC' || $request->final_grade === 'D' || $request->final_grade === 'FDA') 
-            ? $request->final_grade 
-            : (float) $request->final_grade;
-        
+        // Handle numeric and special grades
+        $midterm = $request->midterm;
+        $final = $request->final;
+
+        // Calculate average only if both grades are numeric
+        if (is_numeric($midterm) && is_numeric($final)) {
+            $average = (floatval($midterm) + floatval($final)) / 2;
+            [$numeric_grade, $us_grade] = $this->getGradeDescription($average);
+            
+            $grade->average = $average;
+            $grade->numeric_grade = $numeric_grade;
+            $grade->us_grade = $us_grade;
+        } else {
+            $grade->average = null;
+            $grade->numeric_grade = null;
+            $grade->us_grade = null;
+        }
+
+        $grade->midterm = $midterm;
+        $grade->final = $final;
         $grade->save();
-    
-        return redirect()->route('grades.index')->with('success', 'Grade updated successfully!');
-    }
 
+        // Update semester totals
+        $this->updateSemesterTotal($grade->student_id, $grade->semester);
+
+        return redirect()->route('grades.index')
+            ->with('success', 'Grade updated successfully!');
+    }
     /**
      * Remove the specified resource from storage.
      */

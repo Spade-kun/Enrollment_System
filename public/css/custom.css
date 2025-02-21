@@ -557,3 +557,164 @@ body {
     color: #fff;
     background-color: #e74a3b;
 }
+
+/* Students Table Styling */
+#studentsTable thead th {
+    font-weight: 600;
+}
+
+#studentsTable tbody tr:hover {
+    background-color: #f8f9fc;
+}
+
+.btn-group .btn {
+    margin: 0 2px;
+}
+
+.card-header {
+    background-color: #f8f9fc;
+}
+
+.table-responsive {
+    padding: 1rem;
+}
+
+.alert {
+    border-radius: 0.35rem;
+}
+
+/* DataTables Custom Styling */
+.dataTables_wrapper .dataTables_length select {
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    border-radius: 0.35rem;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 0.35rem;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #d1d3e2;
+}
+
+/* Subjects Table Specific Styling */
+.badge {
+    font-size: 85%;
+    padding: 0.4em 0.6em;
+}
+
+.badge-success {
+    background-color: #1cc88a;
+}
+
+.badge-warning {
+    background-color: #f6c23e;
+    color: #fff;
+}
+
+#subjectsTable .btn-group {
+    white-space: nowrap;
+}
+
+#subjectsTable td {
+    vertical-align: middle;
+}
+
+/* Status Badge Animations */
+.badge {
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    transform: scale(1.1);
+}
+
+/* Enrollments Table Specific Styling */
+#enrollmentsTable thead th {
+    font-weight: 600;
+}
+
+#enrollmentsTable tbody tr:hover {
+    background-color: #f8f9fc;
+    transition: background-color 0.2s ease;
+}
+
+#enrollmentsTable .btn-group {
+    white-space: nowrap;
+}
+
+#enrollmentsTable td {
+    vertical-align: middle;
+}
+
+/* Action Buttons Hover Effects */
+.btn-group .btn {
+    margin: 0 2px;
+    transition: transform 0.2s ease;
+}
+
+.btn-group .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* DataTable Custom Styling */
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 0.35rem;
+    border: 1px solid #d1d3e2;
+    padding: 0.375rem 0.75rem;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    border-radius: 0.35rem;
+    border: 1px solid #d1d3e2;
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+}
+
+/* Grades Table Specific Styling */
+#gradesTable thead th {
+    font-weight: 600;
+}
+
+#gradesTable tbody tr:hover {
+    background-color: #f8f9fc;
+    transition: background-color 0.2s ease;
+}
+
+#gradesTable .badge {
+    font-size: 85%;
+    padding: 0.4em 0.6em;
+    transition: all 0.2s ease;
+}
+
+#gradesTable .badge:hover {
+    transform: scale(1.1);
+}
+
+#gradesTable .badge-info {
+    background-color: #36b9cc;
+}
+
+#gradesTable .badge-warning {
+    background-color: #f6c23e;
+    color: #fff;
+}
+
+#gradesTable .badge-danger {
+    background-color: #e74a3b;
+}
+
+#gradesTable .badge-primary {
+    background-color: #4e73df;
+}
+
+#gradesTable td {
+    vertical-align: middle;
+}
+
+/* Action Buttons Styling */
+.btn-group .btn {
+    margin: 0 2px;
+    transition: transform 0.2s ease;
+}
+
+.btn-group .btn:hover {
+    transform: translateY(-2px);
+}

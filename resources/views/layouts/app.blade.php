@@ -39,7 +39,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
         <!-- Sidebar - Brand -->
-        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('/') }}">
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ url('#') }}">
             <div class="sidebar-brand-icon">
                 <i class="fas fa-graduation-cap"></i>
             </div>
@@ -49,7 +49,7 @@
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
-        <!-- Nav Item - Dashboard -->
+        
         <!-- Nav Item - Dashboard -->
         <li class="nav-item {{ Request::is('dashboard') || Request::is('admin-dashboard') || Request::is('student-dashboard') ? 'active' : '' }}">
             <a class="nav-link" href="{{ auth()->user()->role === 'admin' ? url('/admin-dashboard') : url('/student-dashboard') }}">
@@ -57,7 +57,7 @@
                 <span>Dashboard</span>
             </a>
         </li>
-
+        @if(Auth::user()->role == 'admin')
         <!-- Divider -->
         <hr class="sidebar-divider">
 
@@ -97,6 +97,7 @@
                 <span>Grades</span>
             </a>
         </li>
+    @endif
 
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
@@ -284,7 +285,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -384,7 +385,11 @@
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
     <script src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-
+    <!-- Add these before closing </body> tag -->
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet">
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    @stack('scripts')
 </body>
 
 </html>

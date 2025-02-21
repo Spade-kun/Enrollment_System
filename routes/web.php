@@ -3,11 +3,11 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Providers\AppServiceProvider;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\SubjectController;
-use App\Http\Controllers\EnrollmentController;
-use App\Http\Controllers\GradeController;
-use App\Http\Controllers\StudentDashboardController;
+use App\Http\Controllers\Admin\StudentController;
+use App\Http\Controllers\Admin\SubjectController;
+use App\Http\Controllers\Admin\EnrollmentController;
+use App\Http\Controllers\Admin\GradeController;
+use App\Http\Controllers\Student\StudentDashboardController;
 
 
 Route::get('/', function () {
@@ -28,9 +28,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('grades', GradeController::class); // Adds CRUD routes for grades
 });
 
-Route::middleware(['auth', 'role:admin'])->group(function () {
-    Route::resource('grades', GradeController::class)->except(['index', 'show']);
-});
+// Route::middleware(['auth', 'role:admin'])->group(function () {
+//     Route::resource('grades', GradeController::class)->except(['index', 'show']);
+// });
 
 // Student Dashboard (Only accessible to Students)
 Route::middleware(['auth', 'role:student'])->group(function () {

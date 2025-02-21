@@ -1,33 +1,47 @@
 @extends('layouts.app')
 @section('content')
-    <div class="container mt-4">
-        <h2>Grades List</h2>
-        
-        <!-- Add Student Button (Using Blade Component) -->
-        <a href="{{ route('grades.create') }}">
-            <x-primary-button>Add Grades</x-primary-button>
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Grades Management</h1>
+        <a href="{{ route('grades.create') }}" class="btn btn-primary btn-icon-split">
+            <span class="icon text-white-50">
+                <i class="fas fa-plus"></i>
+            </span>
+            <span class="text">Add New Grade</span>
         </a>
+    </div>
 
-        <!-- Success Message -->
-        @if (session('success'))
-            <div class="alert alert-success mt-3">{{ session('success') }}</div>
-        @endif
+    <!-- Success Message -->
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <i class="fas fa-check-circle mr-2"></i>
+        {{ session('success') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    @endif
 
-        <!-- Student Table with DataTables -->
-        <div class="card mt-3">
-            <div class="card-body">
-                <table id="gradesTable" class="table table-bordered">
-                    <thead>
+    <!-- Grades Table Card -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Grades List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="gradesTable" width="100%" cellspacing="0">
+                    <thead class="bg-primary text-white">
                         <tr>
-                        <th>Student</th>
-                        <th>Subject</th>
-                        <th>Units</th>
-                        <th>Midterm</th>
-                        <th>Final</th>
-                        <th>Semester</th>
-                        <th>Average</th>
-                        <th>Rating</th>
-                        <th>Actions</th>
+                            <th>Student</th>
+                            <th>Subject</th>
+                            <th>Units</th>
+                            <th>Midterm</th>
+                            <th>Final</th>
+                            <th>Semester</th>
+                            <th>Average</th>
+                            <th>Rating</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -38,38 +52,55 @@
                                 <td>{{ $grade->subject->units }}</td>
                                 <td>
                                     @if($grade->midterm === 'INC')
-                                        Incomplete
+                                        <span class="badge badge-warning">Incomplete</span>
                                     @elseif($grade->midterm === 'D')
-                                        Drop
+                                        <span class="badge badge-danger">Drop</span>
                                     @elseif($grade->midterm === 'FDA')
-                                        Failure Due to Absence
+                                        <span class="badge badge-danger">FDA</span>
                                     @else
-                                        {{ $grade->midterm ?? 'N/A' }}
+                                        <span class="badge badge-info">{{ $grade->midterm ?? 'N/A' }}</span>
                                     @endif
                                 </td>
                                 <td>
                                     @if($grade->final === 'INC')
-                                        Incomplete
+                                        <span class="badge badge-warning">Incomplete</span>
                                     @elseif($grade->final === 'D')
-                                        Drop
+                                        <span class="badge badge-danger">Drop</span>
                                     @elseif($grade->final === 'FDA')
-                                        Failure Due to Absence
+                                        <span class="badge badge-danger">FDA</span>
                                     @else
-                                        {{ $grade->final ?? 'N/A' }}
+                                        <span class="badge badge-info">{{ $grade->final ?? 'N/A' }}</span>
                                     @endif
                                 </td>
                                 <td>{{ $grade->semester ?? 'N/A' }}</td>
-                                <td>{{ $grade->average ?? 'N/A' }}</td>
-                                <td>{{ $grade->us_grade ?? 'N/A' }}</td> 
                                 <td>
-                                    <a href="{{ route('grades.edit', $grade) }}" class="btn btn-warning btn-sm">Edit</a>
-                                    <form action="{{ route('grades.destroy', $grade) }}" method="POST" class="d-inline">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Delete grade?')">
-                                            Delete
-                                        </button>
-                                    </form>
+                                    <span class="font-weight-bold">{{ $grade->average ?? 'N/A' }}</span>
+                                </td>
+                                <td>
+                                    <span class="badge badge-primary">{{ $grade->us_grade ?? 'N/A' }}</span>
+                                </td>
+                                <td>
+                                    <div class="btn-group" role="group">
+                                        <a href="{{ route('grades.edit', $grade) }}" 
+                                           class="btn btn-warning btn-sm"
+                                           data-toggle="tooltip" 
+                                           title="Edit Grade">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <form action="{{ route('grades.destroy', $grade) }}" 
+                                              method="POST" 
+                                              class="d-inline">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" 
+                                                    class="btn btn-danger btn-sm" 
+                                                    onclick="return confirm('Are you sure you want to delete this grade?')"
+                                                    data-toggle="tooltip" 
+                                                    title="Delete Grade">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
                                 </td>
                             </tr>
                         @endforeach
@@ -78,5 +109,29 @@
             </div>
         </div>
     </div>
-@endsection
+</div>
 
+@push('scripts')
+<script>
+    $(document).ready(function() {
+        $('#gradesTable').DataTable({
+            "order": [[0, "asc"]],
+            "pageLength": 10,
+            "responsive": true,
+            "language": {
+                "search": "Search grades:",
+                "lengthMenu": "Show _MENU_ entries per page",
+            }
+        });
+
+        // Initialize tooltips
+        $('[data-toggle="tooltip"]').tooltip();
+
+        // Auto-hide alerts after 5 seconds
+        setTimeout(function() {
+            $('.alert').alert('close');
+        }, 5000);
+    });
+</script>
+@endpush
+@endsection
