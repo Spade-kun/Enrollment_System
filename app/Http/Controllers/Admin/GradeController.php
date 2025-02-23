@@ -44,17 +44,18 @@ class GradeController extends Controller
             'midterm' => 'nullable|numeric|min:1.00|max:5.00',
             'final' => 'nullable|numeric|min:1.00|max:5.00',
         ]);
-    
-        // Check if student is enrolled in the selected semester
-        $isEnrolled = \DB::table('enrollments')
+
+        // Check if student is enrolled in the selected subject and semester
+        $enrollment = \DB::table('enrollments')
             ->where('student_id', $validated['student_id'])
+            ->where('subject_id', $validated['subject_id'])
             ->where('semester', $validated['semester'])
-            ->exists();
-    
-        if (!$isEnrolled) {
-            return back()->withErrors(['semester' => 'Student is not enrolled in this semester.']);
+            ->first();
+
+        if (!$enrollment) {
+            return back()->withErrors(['enrollment' => 'The selected student is not enrolled in this subject for the selected semester.']);
         }
-    
+
         // Check if the subject is verified
         $isVerified = \DB::table('subjects')
             ->where('id', $validated['subject_id'])
@@ -134,7 +135,13 @@ class GradeController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $grade = Grade::with('student', 'subject')->find($id);
+
+        if (!$grade) {
+            return redirect()->route('grades.index')->withErrors(['grade' => 'Grade not found.']);
+        }
+
+        return view('grades.show', compact('grade'));
     }
 
     /**

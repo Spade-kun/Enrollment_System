@@ -70,8 +70,6 @@ class EnrollmentController extends Controller
         return redirect()->route('enrollments.index')->with('success', 'Enrollment created successfully.');
     }
 
-
-
     /**
      * Display the specified resource.
      */

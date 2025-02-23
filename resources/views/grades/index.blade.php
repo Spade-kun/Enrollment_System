@@ -81,6 +81,12 @@
                                 </td>
                                 <td>
                                     <div class="btn-group" role="group">
+                                        <a href="{{ route('grades.show', $grade->id) }}" 
+                                            class="btn btn-info btn-sm"
+                                            data-toggle="tooltip" 
+                                            title="View Grade">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
                                         <a href="{{ route('grades.edit', $grade) }}" 
                                            class="btn btn-warning btn-sm"
                                            data-toggle="tooltip" 
