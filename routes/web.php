@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\EnrollmentController;
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Student\StudentDashboardController;
 
-// Redirect authenticated users based on their role
+// Redirect authenticated users based on their role for dashboard
 Route::get('/', function () {
     if (auth()->check()) {
         if (auth()->user()->role === 'admin') {
@@ -32,10 +32,6 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('enrollments', EnrollmentController::class); // Adds CRUD routes for enrollments
     Route::resource('grades', GradeController::class); // Adds CRUD routes for grades
 });
-
-// Route::middleware(['auth', 'role:admin'])->group(function () {
-//     Route::resource('grades', GradeController::class)->except(['index', 'show']);
-// });
 
 // Student Dashboard (Only accessible to Students)
 Route::middleware(['auth', 'role:student'])->group(function () {
