@@ -9,12 +9,17 @@ use App\Http\Controllers\Admin\EnrollmentController;
 use App\Http\Controllers\Admin\GradeController;
 use App\Http\Controllers\Student\StudentDashboardController;
 
-
+// Redirect authenticated users based on their role
 Route::get('/', function () {
+    if (auth()->check()) {
+        if (auth()->user()->role === 'admin') {
+            return redirect()->route('admin-dashboard');
+        } else {
+            return redirect()->route('student-dashboard');
+        }
+    }
     return view('welcome');
 });
-
-
 
 // Admin Dashboard (Only accessible to Admins)
 Route::middleware(['auth', 'role:admin'])->group(function () {

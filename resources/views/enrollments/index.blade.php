@@ -6,7 +6,7 @@
         <h1 class="h3 mb-0 text-gray-800">Enrollments Management</h1>
         <a href="{{ route('enrollments.create') }}" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
-                <i class="fas fa-user-plus"></i>
+                <i class="fas fa-clipboard-list"></i>
             </span>
             <span class="text">Add New Enrollment</span>
         </a>
@@ -96,27 +96,4 @@
     </div>
 </div>
 
-@push('scripts')
-<script>
-    $(document).ready(function() {
-        $('#enrollmentsTable').DataTable({
-            "order": [[0, "desc"]],
-            "pageLength": 10,
-            "responsive": true,
-            "language": {
-                "search": "Search enrollments:",
-                "lengthMenu": "Show _MENU_ entries per page",
-            }
-        });
-
-        // Initialize tooltips
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Auto-hide alerts after 5 seconds
-        setTimeout(function() {
-            $('.alert').alert('close');
-        }, 5000);
-    });
-</script>
-@endpush
 @endsection

@@ -102,27 +102,4 @@
     </div>
 </div>
 
-@push('scripts')
-<script>
-    $(document).ready(function() {
-        $('#studentsTable').DataTable({
-            "order": [[0, "desc"]],
-            "pageLength": 10,
-            "responsive": true,
-            "language": {
-                "search": "Search students:",
-                "lengthMenu": "Show _MENU_ entries per page",
-            }
-        });
-
-        // Initialize tooltips
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Auto-hide alerts after 5 seconds
-        setTimeout(function() {
-            $('.alert').alert('close');
-        }, 5000);
-    });
-</script>
-@endpush
 @endsection

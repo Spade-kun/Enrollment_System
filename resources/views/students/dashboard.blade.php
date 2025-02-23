@@ -128,17 +128,4 @@
     </div>
 </div>
 
-@push('scripts')
-<script>
-    $(document).ready(function() {
-        $('#gradesDashboard').DataTable({
-            "order": [[4, "desc"]], // Sort by average grade by default
-            "pageLength": 10,
-            "language": {
-                "emptyTable": "No grades available"
-            }
-        });
-    });
-</script>
-@endpush
 @endsection

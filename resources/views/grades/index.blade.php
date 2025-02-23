@@ -6,7 +6,7 @@
         <h1 class="h3 mb-0 text-gray-800">Grades Management</h1>
         <a href="{{ route('grades.create') }}" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-graduation-cap"></i>
             </span>
             <span class="text">Add New Grade</span>
         </a>

@@ -304,14 +304,10 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <form method="POST" action="{{ route('logout') }}" class="dropdown-item">
-                                    @csrf
-                                    <a href="#" onclick="event.preventDefault(); this.closest('form').submit();" 
-                                        class="d-flex align-items-center text-decoration-none text-gray-400">
-                                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
-                                        {{ __('Logout') }}
-                                    </a>
-                                </form>
+                                <a href="#" class="dropdown-item" data-toggle="modal" data-target="#logoutModal">
+                                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                                    {{ __('Logout') }}
+                                </a>
                             </div>
                         </li>
 
@@ -362,7 +358,10 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Logout</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -389,7 +388,47 @@
     <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
-    @stack('scripts')
+  
+
+    <script>
+    function initializeDataTable(tableId) {
+        // Define a mapping of table IDs to search labels
+        const searchLabels = {
+            '#studentsTable': 'students',
+            '#subjectsTable': 'subjects',
+            '#enrollmentsTable': 'enrollments',
+            '#gradesTable': 'grades',
+            '#gradesDashboard': 'grade reports',
+        };
+
+        $(document).ready(function() {
+            $(tableId).DataTable({
+                "order": [[0, "desc"]],
+                "pageLength": 10,
+                "responsive": true,
+                "language": {
+                    "search": "Search " + (searchLabels[tableId] || tableId.replace('#', '')) + ":",
+                    "lengthMenu": "Show _MENU_ entries per page",
+                }
+            });
+
+            // Initialize tooltips
+            $('[data-toggle="tooltip"]').tooltip();
+
+            // Auto-hide alerts after 5 seconds
+            setTimeout(function() {
+                $('.alert').alert('close');
+            }, 5000);
+        });
+    }
+
+    // Initialize DataTables for each table
+    initializeDataTable('#studentsTable');
+    initializeDataTable('#subjectsTable');
+    initializeDataTable('#enrollmentsTable');
+    initializeDataTable('#gradesTable');
+    initializeDataTable('#gradesDashboard');
+</script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@
         <h1 class="h3 mb-0 text-gray-800">Subjects Management</h1>
         <a href="{{ route('subjects.create') }}" class="btn btn-primary btn-icon-split">
             <span class="icon text-white-50">
-                <i class="fas fa-plus"></i>
+                <i class="fas fa-book"></i>
             </span>
             <span class="text">Add New Subject</span>
         </a>
@@ -104,27 +104,5 @@
     </div>
 </div>
 
-@push('scripts')
-<script>
-    $(document).ready(function() {
-        $('#subjectsTable').DataTable({
-            "order": [[0, "asc"]],
-            "pageLength": 10,
-            "responsive": true,
-            "language": {
-                "search": "Search subjects:",
-                "lengthMenu": "Show _MENU_ entries per page",
-            }
-        });
 
-        // Initialize tooltips
-        $('[data-toggle="tooltip"]').tooltip();
-
-        // Auto-hide alerts after 5 seconds
-        setTimeout(function() {
-            $('.alert').alert('close');
-        }, 5000);
-    });
-</script>
-@endpush
 @endsection

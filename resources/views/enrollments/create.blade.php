@@ -35,7 +35,7 @@
             <div class="card shadow mb-4">
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                     <h6 class="m-0 font-weight-bold text-primary">
-                        <i class="fas fa-clipboard-list mr-2"></i>Enrollment Information
+                        <i class="fas fa-clipboard-list mr-2"></i>Enrollment Form
                     </h6>
                 </div>
                 <div class="card-body">
