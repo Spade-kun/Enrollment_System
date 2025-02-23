@@ -1,3 +1,8 @@
-# Enrollment_System
+#BASIC CRUDS FOR ENROLLMENT SYSTEM USING LARAVEL 11
 
-Basic CRUD operation for Laravel v11 using per module
+## INSTALLATION
+
+1. Clone the repository
+2. Run `composer install`
+3. Run `php artisan migrate`
+4. Run `php artisan serve`
