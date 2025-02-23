@@ -1,0 +1,720 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styling */
+#studentsTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#studentsTable th {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: left;
+    padding: 12px;
+}
+
+#studentsTable td {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+#studentsTable td .btn {
+    display: inline-block;
+    margin-right: 3px;
+
+}
+
+#studentsTable td form {
+    display: inline;
+}
+
+/* Alternate row colors */
+#studentsTable tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect */
+#studentsTable tbody tr:hover {
+    background-color: #d1ecf1;
+    transition: background-color 0.3s;
+}
+
+/* Subject Table*/
+#subjectsTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#subjectsTable th {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: left;
+    padding: 12px;
+}
+
+#subjectsTable td {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+#subjectsTable td .btn {
+    display: inline-block;
+    margin-right: 3px;
+
+}
+
+#subjectsTable td form {
+    display: inline;
+}
+
+/* Alternate row colors */
+#subjectsTable tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect */
+#subjectsTable tbody tr:hover {
+    background-color: #d1ecf1;
+    transition: background-color 0.3s;
+}
+
+/* Enrollment Table*/
+#enrollmentsTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#enrollmentsTable th {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: left;
+    padding: 12px;
+}
+
+#enrollmentsTable td {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+#enrollmentsTable td .btn {
+    display: inline-block;
+    margin-right: 3px;
+
+}
+
+#enrollmentsTable td form {
+    display: inline;
+}
+
+/* Alternate row colors */
+#enrollmentsTable tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect */
+#enrollmentsTable tbody tr:hover {
+    background-color: #d1ecf1;
+    transition: background-color 0.3s;
+}
+
+/* Grade Table*/
+#gradesTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#gradesTable th {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: left;
+    padding: 12px;
+}
+
+#gradesTable td {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+#gradesTable td .btn {
+    display: inline-block;
+    margin-right: 3px;
+
+}
+
+#gradesTable td form {
+    display: inline;
+}
+
+/* Alternate row colors */
+#gradesTable tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect */
+#gradesTable tbody tr:hover {
+    background-color: #d1ecf1;
+    transition: background-color 0.3s;
+}
+
+/* User Table*/
+#usersTable {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#usersTable th {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: left;
+    padding: 12px;
+}
+
+#usersTable td {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+#usersTable td .btn {
+    display: inline-block;
+    margin-right: 3px;
+
+}
+
+#usersTable td form {
+    display: inline;
+}
+
+/* Alternate row colors */
+#usersTable tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect */
+#usersTable tbody tr:hover {
+    background-color: #d1ecf1;
+    transition: background-color 0.3s;
+}
+
+/* User Table*/
+#gradesDashboard {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#gradesDashboard th {
+    background-color: #007bff;
+    color: #ffffff;
+    text-align: left;
+    padding: 12px;
+}
+
+#gradesDashboard td {
+    padding: 12px;
+    border-bottom: 1px solid #dee2e6;
+}
+
+#gradesDashboard td .btn {
+    display: inline-block;
+    margin-right: 3px;
+
+}
+
+#gradesDashboard td form {
+    display: inline;
+}
+
+/* Alternate row colors */
+#gradesDashboard tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+/* Hover effect */
+#gradesDashboard tbody tr:hover {
+    background-color: #d1ecf1;
+    transition: background-color 0.3s;
+}
+
+/* Button Styling */
+.btn {
+    border-radius: 5px;
+
+    padding: 5px 10px;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border: none;
+}
+
+.btn-warning {
+    background-color: #ffc107;
+    border: none;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+
+.btn:hover {
+    filter: brightness(90%);
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    #studentsTable {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+}
+
+/* Centering the Form and Title */
+.container1 {
+    max-width: 500px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container2 {
+    max-width: 800px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.container3 {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Center the Heading */
+.h1 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Input and Select Field Styling */
+.form-control1 {
+    width: 100%;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ced4da;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Label Styling */
+.form-label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Input Field Focus Effect */
+.form-control1:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Button Styling */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+
+/* Centering and Styling the Student Details Card */
+.student-card {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Card Hover Effect */
+.student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+/* Centering and Styling the Subject Details Card */
+.subject-card {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Card Hover Effect */
+.subject-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Heading Styling */
+.h2 {
+    font-size: 26px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Student Details Styling */
+.p1 {
+    font-size: 18px;
+    color: #333;
+    line-height: 1.5;
+    margin-bottom: 8px;
+}
+
+/* Back Button Styling */
+.btn-lg {
+    font-size: 16px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background-color: #6c757d;
+    opacity: 0.9;
+}
+
+/* Add these styles at the end of your custom.css file */
+
+/* Card Header Styling */
+.card-header {
+    background-color: #f8f9fc;
+    border-bottom: 1px solid #e3e6f0;
+}
+
+/* Form Control Focus */
+.form-control:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+/* Badge Styling */
+.badge {
+    font-size: 85%;
+    font-weight: 600;
+    padding: 0.35em 0.65em;
+    border-radius: 0.25rem;
+}
+
+.badge-success {
+    background-color: #1cc88a;
+}
+
+.badge-secondary {
+    background-color: #858796;
+}
+
+/* Table Styling Enhancement */
+.table-bordered th {
+    border: 1px solid #e3e6f0;
+    background-color: #f8f9fc;
+    color: #4e73df;
+    font-weight: 600;
+}
+
+.table-bordered td {
+    border: 1px solid #e3e6f0;
+}
+
+/* Button Hover Effects */
+.btn-primary:hover {
+    background-color: #2e59d9;
+    border-color: #2653d4;
+}
+
+.btn-secondary:hover {
+    background-color: #717384;
+    border-color: #6b6d7d;
+}
+
+/* Detail Text Styling */
+.text-gray-600 {
+    color: #858796 !important;
+}
+
+.text-gray-800 {
+    color: #5a5c69 !important;
+}
+
+/* Form Input Styling */
+.form-control {
+    font-size: 0.9rem;
+    border-radius: 0.35rem;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #d1d3e2;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #bac8f3;
+    box-shadow: 0 0 0 0.2rem rgba(78, 115, 223, 0.25);
+}
+
+/* Read-only Input Styling */
+.form-control[readonly] {
+    background-color: #eaecf4;
+    opacity: 1;
+}
+
+/* Badge Styling Enhancement */
+.badge {
+    font-size: 80%;
+    font-weight: 600;
+    padding: 0.35em 0.65em;
+    border-radius: 0.35rem;
+}
+
+.badge-success {
+    color: #fff;
+    background-color: #1cc88a;
+}
+
+.badge-danger {
+    color: #fff;
+    background-color: #e74a3b;
+}
+
+/* Students Table Styling */
+#studentsTable thead th {
+    font-weight: 600;
+}
+
+#studentsTable tbody tr:hover {
+    background-color: #f8f9fc;
+}
+
+.btn-group .btn {
+    margin: 0 2px;
+}
+
+.card-header {
+    background-color: #f8f9fc;
+}
+
+.table-responsive {
+    padding: 1rem;
+}
+
+.alert {
+    border-radius: 0.35rem;
+}
+
+/* DataTables Custom Styling */
+.dataTables_wrapper .dataTables_length select {
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+    border-radius: 0.35rem;
+}
+
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 0.35rem;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #d1d3e2;
+}
+
+/* Subjects Table Specific Styling */
+.badge {
+    font-size: 85%;
+    padding: 0.4em 0.6em;
+}
+
+.badge-success {
+    background-color: #1cc88a;
+}
+
+.badge-warning {
+    background-color: #f6c23e;
+    color: #fff;
+}
+
+#subjectsTable .btn-group {
+    white-space: nowrap;
+}
+
+#subjectsTable td {
+    vertical-align: middle;
+}
+
+/* Status Badge Animations */
+.badge {
+    transition: all 0.3s ease;
+}
+
+.badge:hover {
+    transform: scale(1.1);
+}
+
+/* Enrollments Table Specific Styling */
+#enrollmentsTable thead th {
+    font-weight: 600;
+}
+
+#enrollmentsTable tbody tr:hover {
+    background-color: #f8f9fc;
+    transition: background-color 0.2s ease;
+}
+
+#enrollmentsTable .btn-group {
+    white-space: nowrap;
+}
+
+#enrollmentsTable td {
+    vertical-align: middle;
+}
+
+/* Action Buttons Hover Effects */
+.btn-group .btn {
+    margin: 0 2px;
+    transition: transform 0.2s ease;
+}
+
+.btn-group .btn:hover {
+    transform: translateY(-2px);
+}
+
+/* DataTable Custom Styling */
+.dataTables_wrapper .dataTables_filter input {
+    border-radius: 0.35rem;
+    border: 1px solid #d1d3e2;
+    padding: 0.375rem 0.75rem;
+}
+
+.dataTables_wrapper .dataTables_length select {
+    border-radius: 0.35rem;
+    border: 1px solid #d1d3e2;
+    padding: 0.375rem 1.75rem 0.375rem 0.75rem;
+}
+
+/* Grades Table Specific Styling */
+#gradesTable thead th {
+    font-weight: 600;
+}
+
+#gradesTable tbody tr:hover {
+    background-color: #f8f9fc;
+    transition: background-color 0.2s ease;
+}
+
+#gradesTable .badge {
+    font-size: 85%;
+    padding: 0.4em 0.6em;
+    transition: all 0.2s ease;
+}
+
+#gradesTable .badge:hover {
+    transform: scale(1.1);
+}
+
+#gradesTable .badge-info {
+    background-color: #36b9cc;
+}
+
+#gradesTable .badge-warning {
+    background-color: #f6c23e;
+    color: #fff;
+}
+
+#gradesTable .badge-danger {
+    background-color: #e74a3b;
+}
+
+#gradesTable .badge-primary {
+    background-color: #4e73df;
+}
+
+#gradesTable td {
+    vertical-align: middle;
+}
+
+/* Action Buttons Styling */
+.btn-group .btn {
+    margin: 0 2px;
+    transition: transform 0.2s ease;
+}
+
+.btn-group .btn:hover {
+    transform: translateY(-2px);
+}
