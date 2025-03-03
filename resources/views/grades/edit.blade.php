@@ -15,6 +15,16 @@
         </div>
     @endif
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+
     <div class="row">
         <div class="col-xl-6 col-lg-7">
             <div class="card shadow mb-4">
@@ -27,6 +37,11 @@
                     <form action="{{ route('grades.update', $grade) }}" method="POST">
                         @csrf
                         @method('PATCH')
+
+                        <!-- Hidden fields to ensure required data is submitted -->
+                        <input type="hidden" name="student_id" value="{{ $grade->student_id }}">
+                        <input type="hidden" name="subject_id" value="{{ $grade->subject_id }}">
+                        <input type="hidden" name="semester" value="{{ $grade->semester }}">
 
                         <!-- Read-only fields -->
                         <div class="form-group">

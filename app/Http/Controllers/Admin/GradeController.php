@@ -9,6 +9,7 @@ use App\Models\Subject;
 use Illuminate\Support\Facades\Log;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\GradeRequest;
 
 class GradeController extends Controller
 {
@@ -35,15 +36,9 @@ class GradeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GradeRequest $request)
     {
-        $validated = $request->validate([
-            'student_id' => 'required|exists:students,id',
-            'subject_id' => 'required|exists:subjects,id',
-            'semester' => 'required|in:1st,2nd',
-            'midterm' => 'nullable|numeric|min:1.00|max:5.00',
-            'final' => 'nullable|numeric|min:1.00|max:5.00',
-        ]);
+        $validated = $request->validated();
 
         // Check if student is enrolled in the selected subject and semester
         $enrollment = \DB::table('enrollments')
@@ -75,11 +70,7 @@ class GradeController extends Controller
     
         // Create new grade entry
         $grade = new Grade();
-        $grade->student_id = $validated['student_id'];
-        $grade->subject_id = $validated['subject_id'];
-        $grade->semester = $validated['semester'];
-        $grade->midterm = $request->midterm ?? 0;
-        $grade->final = $request->final ?? 0;
+        $grade->fill($validated);
     
         // Calculate average if both midterm and final exist
         if (!is_null($grade->midterm) && !is_null($grade->final)) {
@@ -157,16 +148,13 @@ class GradeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Grade $grade)
+    public function update(GradeRequest $request, Grade $grade)
     {
-        $validated = $request->validate([
-            'midterm' => 'required',
-            'final' => 'required',
-        ]);
+        $validated = $request->validated();
 
         // Handle numeric and special grades
-        $midterm = $request->midterm;
-        $final = $request->final;
+        $midterm = $validated['midterm'];
+        $final = $validated['final'];
 
         // Calculate average only if both grades are numeric
         if (is_numeric($midterm) && is_numeric($final)) {
@@ -182,9 +170,8 @@ class GradeController extends Controller
             $grade->us_grade = null;
         }
 
-        $grade->midterm = $midterm;
-        $grade->final = $final;
-        $grade->save();
+        // Update the grade record with validated data
+        $grade->update($validated);
 
         // Update semester totals
         $this->updateSemesterTotal($grade->student_id, $grade->semester);

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\Enrollment;
+use App\Http\Requests\StudentRequest;
 
 use App\Http\Controllers\Controller;
 
@@ -23,7 +24,7 @@ class StudentController extends Controller
         return view('students.create');
     }
 
-    public function store(Request $request)
+    public function store(StudentRequest $request)
     {
         try {
             $validated = $request->validate([
@@ -70,7 +71,7 @@ class StudentController extends Controller
         return view('students.edit', compact('student'));
     }
 
-    public function update(Request $request, Student $student)
+    public function update(StudentRequest $request, Student $student)
     {
         try {
             $validated = $request->validate([

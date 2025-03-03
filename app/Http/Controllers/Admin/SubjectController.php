@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Models\Subject;
+use App\Http\Requests\SubjectRequest;
 
 use App\Http\Controllers\Controller;
 
@@ -29,16 +30,11 @@ class SubjectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(SubjectRequest $request)
     {
         try {
-            $request->validate([
-                'code' => 'required|unique:subjects|max:10',
-                'name' => 'required|max:255',
-                'units' => 'required|integer|min:1',
-            ]);
-
-            Subject::create($request->all());
+            $validated = $request->validated();
+            Subject::create($validated);
             return redirect()->route('subjects.index')->with('success', 'Subject created successfully.');
         } catch (\Exception $e) {
             return redirect()->route('subjects.index')->with('error', 'An error occurred while creating the subject: ' . $e->getMessage());
@@ -64,17 +60,11 @@ class SubjectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Subject $subject)
+    public function update(SubjectRequest $request, Subject $subject)
     {
         try {
-            $validated = $request->validate([
-                'code' => 'required|max:10|unique:subjects,code,' . $subject->id,
-                'name' => 'required|max:255',
-                'units' => 'required|integer|min:1',
-            ]);
-        
+            $validated = $request->validated();
             $subject->update($validated);
-        
             return redirect()->route('subjects.index')->with('success', 'Subject updated successfully.');
         } catch (\Exception $e) {
             return redirect()->route('subjects.index')->with('error', 'An error occurred while updating the subject: ' . $e->getMessage());

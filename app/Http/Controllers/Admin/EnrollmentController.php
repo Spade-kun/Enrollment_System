@@ -9,6 +9,7 @@ use App\Models\Student;
 use App\Models\Subject;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\EnrollmentRequest;
 
 class EnrollmentController extends Controller
 {
@@ -36,14 +37,9 @@ class EnrollmentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(EnrollmentRequest $request)
     {
-        $validated = $request->validate([
-            'student_id' => 'required|exists:students,id',
-            'subject_id' => 'required|exists:subjects,id',
-            'semester' => 'required|in:1st,2nd',
-            'school_year' => ['required', 'regex:/^\d{4}-\d{4}$/'],
-        ]);
+        $validated = $request->validated();
 
         $student = Student::findOrFail($validated['student_id']);
         $subject = Subject::findOrFail($validated['subject_id']);
@@ -92,15 +88,9 @@ class EnrollmentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Enrollment $enrollment)
+    public function update(EnrollmentRequest $request, Enrollment $enrollment)
     {
-        $validated = $request->validate([
-            'student_id' => 'required|exists:students,id',
-            'subject_id' => 'required|exists:subjects,id',
-            'semester' => 'required|in:1st,2nd',
-            'school_year' => ['required', 'regex:/^\d{4}-\d{4}$/'], // Ensure format like 2022-2023
-        ]);
-
+        $validated = $request->validated();
         $enrollment->update($validated);
         return redirect()->route('enrollments.index')->with('success', 'Enrollment updated successfully.');
     }
