@@ -113,8 +113,8 @@
                                         <td>{{ $student->year_level ?? 'N/A' }}</td>
                                         <td>{{ $student->course ?? 'N/A' }}</td>
                                         <td>
-                                            <span class="badge badge-{{ $student->status === 'active' ? 'success' : 'secondary' }}">
-                                                {{ $student->status }}
+                                            <span class="badge badge-{{ $student->status === 'added_as_student' ? 'success' : 'warning' }}">
+                                                {{ $student->status === 'added_as_student' ? 'Added' : 'Not Added' }}
                                             </span>
                                         </td>
                                     </tr>

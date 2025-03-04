@@ -94,6 +94,8 @@ class GradeController extends Controller
             $grade->{'2nd_sem_total_grade'} = $secondSemTotal ?? $grade->average;
         }
     
+        $grade->description = 'No description'; // Set a default description
+    
         $grade->save();
     
         // Update the semester totals for all grades for this student without overriding the other semester

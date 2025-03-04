@@ -40,7 +40,7 @@
                         <div class="form-group">
                             <label class="small font-weight-bold text-gray-600">Student</label>
                             <select name="student_id" class="form-control" required>
-                                <option value="">Select Student</option>
+                                <option disabled selected value="">Select Student</option>
                                 @foreach ($students as $student)
                                     <option value="{{ $student->id }}">{{ $student->name }}</option>
                                 @endforeach
@@ -51,7 +51,7 @@
                         <div class="form-group">
                             <label class="small font-weight-bold text-gray-600">Subject</label>
                             <select name="subject_id" class="form-control" required>
-                                <option value="">Select Subject</option>
+                                <option disabled selected value="">Select Subject</option>
                                 @foreach ($subjects as $subject)
                                     <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                                 @endforeach
@@ -62,7 +62,7 @@
                         <div class="form-group">
                             <label class="small font-weight-bold text-gray-600">Semester</label>
                             <select name="semester" class="form-control" required>
-                                <option value="">Select Semester</option>
+                                <option disabled selected value="">Select Semester</option>
                                 <option value="1st">1st Semester</option>
                                 <option value="2nd">2nd Semester</option>
                             </select>
@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <label class="small font-weight-bold text-gray-600">Midterm Grade</label>
                             <select name="midterm" class="form-control">
-                                <option value="">Select Grade</option>
+                                <option disabled selected value="">Select Grade</option>
                                 @foreach(['1.00' => 'A+', '1.25' => 'A', '1.50' => 'A-', '1.75' => 'B+', 
                                         '2.00' => 'B', '2.25' => 'B-', '2.50' => 'C+', '2.75' => 'C', 
                                         '3.00' => 'C-', '4.00' => 'D - Conditional', '5.00' => 'F - Failed', 
@@ -86,7 +86,7 @@
                         <div class="form-group">
                             <label class="small font-weight-bold text-gray-600">Final Grade</label>
                             <select name="final" class="form-control">
-                                <option value="">Select Grade</option>
+                                <option disabled selected value="">Select Grade</option>
                                 @foreach(['1.00' => 'A+', '1.25' => 'A', '1.50' => 'A-', '1.75' => 'B+', 
                                         '2.00' => 'B', '2.25' => 'B-', '2.50' => 'C+', '2.75' => 'C', 
                                         '3.00' => 'C-', '4.00' => 'D - Conditional', '5.00' => 'F - Failed', 

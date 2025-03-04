@@ -6,9 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\User;
 use App\Models\Enrollment;
-use App\Http\Requests\StudentRequest;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StudentRequest;
 
 
 class StudentController extends Controller
@@ -24,7 +24,7 @@ class StudentController extends Controller
         return view('students.create');
     }
 
-    public function store(StudentRequest $request)
+    public function store(Request $request)
     {
         try {
             $validated = $request->validate([
@@ -74,11 +74,7 @@ class StudentController extends Controller
     public function update(StudentRequest $request, Student $student)
     {
         try {
-            $validated = $request->validate([
-                'name' => 'required|string|max:255',
-                'year_level' => 'required|integer|min:1|max:6',
-                'course' => 'required|string|in:BSIT,BSCS,BSCE,BSEd,BSBA',
-            ]);
+            $validated = $request->validated();
 
             // Update the student record
             $student->update($validated);

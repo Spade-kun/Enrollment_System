@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('gender')->nullable(); 
-            $table->integer('year_level')->nullable(); // Year level (1-6)
-            $table->string('course')->nullable(); // Course selection
+            // $table->string('gender')->nullable(); 
+            // $table->integer('year_level')->nullable(); // Year level (1-6)
+            // $table->string('course')->nullable(); // Course selection
         });
     }
 
@@ -24,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['gender','year_level', 'course']);
+            // $table->dropColumn(['gender','year_level', 'course']);
         });
     }
 };

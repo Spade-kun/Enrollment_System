@@ -57,8 +57,6 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        return redirect()->route('login')->with('success', 'Account created successfully. Please wait for the admin to approve your account into student account.');
+        return redirect()->route('login')->with('status', 'Account created successfully. Please wait for the admin to approve your account.');
     }
 }

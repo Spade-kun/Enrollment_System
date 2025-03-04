@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+use App\Models\Student;
 
 class LoginRequest extends FormRequest
 {
@@ -46,6 +47,14 @@ class LoginRequest extends FormRequest
 
             throw ValidationException::withMessages([
                 'email' => trans('auth.failed'),
+            ]);
+        }
+
+        // Check if the authenticated user is a student and exists in the students table by email
+        if (auth()->user()->role === 'student' && !Student::where('email', $this->input('email'))->exists()) {
+            Auth::logout(); // Log out the user
+            throw ValidationException::withMessages([
+                'email' => 'Wait, you are still pending. Please wait for the admin to approve.',
             ]);
         }
 

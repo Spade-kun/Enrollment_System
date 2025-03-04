@@ -58,7 +58,7 @@ class EnrollmentController extends Controller
         // Create Enrollment
         Enrollment::create($validated);
 
-        // Verify the subject (Update its status)
+        // Update the subject's status to 'verified'
         if ($subject->status !== 'verified') {
             $subject->update(['status' => 'verified']);
         }
