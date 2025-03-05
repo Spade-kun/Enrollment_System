@@ -23,7 +23,7 @@ class StudentRequest extends FormRequest
     {
         $rules = [
             'name' => 'required|string|max:255',
-            'year_level' => 'required|integer|min:1|max:6',
+            'year_level' => 'required|integer|in:1.00,1.50,1.75,2.00,',
             'course' => 'required|string|in:BSIT,BSCS,BSCE,BSEd,BSBA',
         ];
 
