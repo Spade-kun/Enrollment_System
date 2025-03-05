@@ -16,6 +16,6 @@
 
 ## MAIN BRANCH FOR FINAL PROJECT
 
-## Created by Noel C. Raterta Jr.
+
 
 
